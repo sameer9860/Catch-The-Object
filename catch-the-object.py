@@ -15,7 +15,13 @@ pygame.display.set_caption("Catch the Falling Objects")
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-LEVEL_COLORS = [(255, 255, 255), (200, 230, 255), (255, 240, 200), (220, 255, 220), (255, 220, 220)]
+LEVEL_COLORS = [
+    (255, 255, 255),   # Level 1 - White
+    (200, 230, 255),   # Level 2 - Light Blue
+    (255, 240, 200),   # Level 3 - Light Orange
+    (220, 255, 220),   # Level 4 - Light Green
+    (255, 220, 220)    # Level 5 - Light Red
+]
 
 # Clock
 clock = pygame.time.Clock()
@@ -94,13 +100,13 @@ def game_loop(high_score):
         if keys[pygame.K_RIGHT] and basket.right < WIDTH:
             basket.x += basket_speed
 
-        # Difficulty scaling
-        object_speed = 6 + score // 10
-        spawn_chance = max(8, 30 - score//5)
-
         # Level calculation
         level = score // 20
         bg_color = LEVEL_COLORS[level % len(LEVEL_COLORS)]
+
+        # Difficulty scaling by level
+        object_speed = 6 + level * 3   # Each level increases speed more sharply
+        spawn_chance = max(5, 30 - level * 3)  # More frequent spawns per level
 
         # Spawn objects randomly
         if random.randint(1, spawn_chance) == 1:
