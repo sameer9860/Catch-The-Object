@@ -13,15 +13,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
 pygame.display.set_caption("Catch the Falling Objects")
 
 # Colors
-WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-LEVEL_COLORS = [
-    (255, 255, 255),   # Level 1 - White
-    (200, 230, 255),   # Level 2 - Light Blue
-    (255, 240, 200),   # Level 3 - Light Orange
-    (220, 255, 220),   # Level 4 - Light Green
-    (255, 220, 220)    # Level 5 - Light Red
-]
 
 # Clock
 clock = pygame.time.Clock()
@@ -48,6 +40,15 @@ bomb_img = pygame.transform.scale(bomb_img, (object_size, object_size))
 
 game_over_img = pygame.image.load("gameover.png")
 game_over_img = pygame.transform.scale(game_over_img, (400, 150))
+
+# Background images per level
+backgrounds = [
+    pygame.transform.scale(pygame.image.load("bg1.png"), (WIDTH, HEIGHT)),  # Level 1
+    pygame.transform.scale(pygame.image.load("bg2.png"), (WIDTH, HEIGHT)),  # Level 2
+    pygame.transform.scale(pygame.image.load("bg3.png"), (WIDTH, HEIGHT)),  # Level 3
+    pygame.transform.scale(pygame.image.load("bg4.png"), (WIDTH, HEIGHT)),  # Level 4
+    pygame.transform.scale(pygame.image.load("bg5.png"), (WIDTH, HEIGHT))   # Level 5
+]
 
 # Load sounds
 catch_sound = pygame.mixer.Sound("catch.wav")
@@ -102,10 +103,10 @@ def game_loop(high_score):
 
         # Level calculation
         level = score // 20
-        bg_color = LEVEL_COLORS[level % len(LEVEL_COLORS)]
+        bg_image = backgrounds[level % len(backgrounds)]
 
         # Difficulty scaling by level
-        object_speed = 6 + level * 3   # Each level increases speed more sharply
+        object_speed = 6 + level * 3   # Faster drop per level
         spawn_chance = max(5, 30 - level * 3)  # More frequent spawns per level
 
         # Spawn objects randomly
@@ -128,7 +129,7 @@ def game_loop(high_score):
                 falling_objects.remove(obj)
 
         # Draw everything
-        screen.fill(bg_color)
+        screen.blit(bg_image, (0, 0))  # Background image
         screen.blit(basket_img, basket)
         for rect, obj_type in falling_objects:
             if obj_type == "good":
@@ -174,7 +175,7 @@ def game_loop(high_score):
 
 def start_screen(high_score):
     while True:
-        screen.fill(WHITE)
+        screen.fill((255, 255, 255))
         title_text = font.render("Catch the Falling Objects", True, BLACK)
         start_text = font.render("Press SPACE to Start", True, BLACK)
         quit_text = font.render("Press Q to Quit", True, BLACK)
