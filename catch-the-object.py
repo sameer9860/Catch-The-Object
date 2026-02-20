@@ -15,6 +15,7 @@ pygame.display.set_caption("Catch the Falling Objects")
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+LEVEL_COLORS = [(255, 255, 255), (200, 230, 255), (255, 240, 200), (220, 255, 220), (255, 220, 220)]
 
 # Clock
 clock = pygame.time.Clock()
@@ -97,6 +98,10 @@ def game_loop(high_score):
         object_speed = 6 + score // 10
         spawn_chance = max(8, 30 - score//5)
 
+        # Level calculation
+        level = score // 20
+        bg_color = LEVEL_COLORS[level % len(LEVEL_COLORS)]
+
         # Spawn objects randomly
         if random.randint(1, spawn_chance) == 1:
             spawn_object(falling_objects)
@@ -117,7 +122,7 @@ def game_loop(high_score):
                 falling_objects.remove(obj)
 
         # Draw everything
-        screen.fill(WHITE)
+        screen.fill(bg_color)
         screen.blit(basket_img, basket)
         for rect, obj_type in falling_objects:
             if obj_type == "good":
@@ -128,9 +133,11 @@ def game_loop(high_score):
         score_text = font.render(f"Score: {score}", True, BLACK)
         lives_text = font.render(f"Lives: {lives}", True, BLACK)
         high_score_text = font.render(f"High Score: {high_score}", True, BLACK)
+        level_text = font.render(f"Level: {level+1}", True, BLACK)
         screen.blit(score_text, (20, 20))
         screen.blit(lives_text, (20, 70))
         screen.blit(high_score_text, (20, 120))
+        screen.blit(level_text, (20, 170))
 
         # Game Over
         if lives <= 0:
