@@ -1,8 +1,32 @@
-# � Catch the Falling Objects
+# 🎯 Catch the Falling Objects
 
 > A fun, fast-paced arcade game built with **Python** and **Pygame** — catch falling apples, grab power-ups, and dodge bombs to survive as long as you can!
 
-![Game Over Screen](gameover.png)
+---
+
+## 🖼️ Screenshots
+
+### 🏠 Main Menu
+
+![Main Menu](Screenshots/Screenshot%20from%202026-02-21%2020-54-46.png)
+
+### 🎮 Gameplay
+
+| Level 1 — Sunset Lake                                                 | Level 2 — Forest                                                      |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| ![Level 1](Screenshots/Screenshot%20from%202026-02-21%2020-55-06.png) | ![Level 2](Screenshots/Screenshot%20from%202026-02-21%2020-56-58.png) |
+
+| Level 3 — Desert                                                      | Level 4 — Night Mountains                                             |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| ![Level 3](Screenshots/Screenshot%20from%202026-02-21%2020-57-39.png) | ![Level 4](Screenshots/Screenshot%20from%202026-02-21%2020-58-18.png) |
+
+### 🌆 Level 5 — City Skyline
+
+![Level 5](Screenshots/Screenshot%20from%202026-02-21%2020-58-47.png)
+
+### 💀 Game Over
+
+![Game Over](Screenshots/Screenshot%20from%202026-02-21%2021-02-36.png)
 
 ---
 
@@ -85,25 +109,8 @@
 
 ---
 
-## � Project Structure
-
-```
-Catch-The-Object/
-├── catch-the-object.py   # Main game source
-├── requirements.txt      # Python dependencies
-├── highscore.txt         # Persisted high score
-├── apple.png             # Apple sprite
-├── bomb.png              # Bomb sprite
-├── basket.png            # Basket sprite
-├── gameover.png          # Game over image
-├── bg1.png – bg5.png     # Level backgrounds
-├── catch.wav             # Catch sound effect
-├── explosion.wav         # Explosion sound effect
-└── background.mp3        # Background music
-```
-
 ---
 
-## �📜 License
+## 📜 License
 
 This project is open-source and free to use. Feel free to play, modify, and share — enjoy catching! 🎉
